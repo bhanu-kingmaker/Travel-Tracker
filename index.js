@@ -1,3 +1,4 @@
+
 import express from "express";
 import bodyParser from "body-parser";
 import pkg from 'pg';
@@ -63,6 +64,18 @@ app.post('/add', async(req,res)=>{
       total:countries.length,
       error: 'No country is founded with this Name'
     });
+  }
+});
+
+
+app.get('/visited', async (req, res) => {
+  try {
+    const result = await db.query("SELECT country_code FROM visited_countries");
+    const visited = result.rows.map(row => row.country_code);
+    res.json(visited);
+  } catch (err) {
+    console.error('Error fetching visited countries:', err);
+    res.status(500).json({ error: 'Failed to fetch visited countries' });
   }
 });
 
