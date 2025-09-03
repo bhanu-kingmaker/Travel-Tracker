@@ -1,12 +1,12 @@
 import express from "express";
 import bodyParser from "body-parser";
-import pg from 'pg';
+import pkg from 'pg';
 import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5500;
 
-const { Pool } = require('pg');
+const { Pool } = pkg;
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false } // for Neon
