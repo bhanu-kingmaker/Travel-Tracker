@@ -7,10 +7,12 @@ const app = express();
 const port = 5500;
 
 const db = new pg.Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // only needed for cloud DBs
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
-
 db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
