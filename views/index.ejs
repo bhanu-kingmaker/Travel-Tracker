@@ -374,15 +374,16 @@
   <h2 class="total-count">Total Countries: <%=total%>
   </h2>
   <script>
-    const country_codes = "<%= countries %>".split(",") 
-    console.log("<%= countries %>");
-    country_codes.forEach(code => {
-  const el = document.getElementById(code);
-  if (el) {
-    el.style.fill = 'teal';
-  } 
-});
-  </script>
+  const visitedCountries = <%- JSON.stringify(countries) %>;
+  console.log("Visited countries:", visitedCountries);
+
+  visitedCountries.forEach(code => {
+    const el = document.getElementById(code);
+    if (el) {
+      el.style.fill = 'teal';
+    }
+  });
+</script>
 </body>
 
 </html>
